@@ -74,17 +74,18 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
           ),
         ),
         actions: [
-          TextButton.icon(
-              style: TextButton.styleFrom(primary: Theme.of(context).iconTheme.color),
-              onPressed: () {},
-              icon: Icon(
-                Icons.account_circle_outlined,
-                size: 20.0,
-                color: Colors.white,
-              ),
-              label: Text(
-                'Abdul Haseeb',
-              )),
+          if (MediaQuery.of(context).size.width > 800)
+            TextButton.icon(
+                style: TextButton.styleFrom(primary: Theme.of(context).iconTheme.color),
+                onPressed: () {},
+                icon: Icon(
+                  Icons.account_circle_outlined,
+                  size: 20.0,
+                  color: Colors.white,
+                ),
+                label: Text(
+                  'Abdul Haseeb',
+                )),
           IconButton(
             padding: const EdgeInsets.only(),
             icon: Icon(Icons.keyboard_arrow_down),

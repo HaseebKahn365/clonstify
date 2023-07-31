@@ -9,6 +9,7 @@ import 'dart:io';
 import 'package:provider/provider.dart';
 
 import 'Screens/playlist_screen.dart';
+import 'Widgets/current_track.dart';
 import 'Widgets/side_menu.dart';
 
 void main() async {
@@ -78,15 +79,11 @@ class Shell extends StatelessWidget {
         Expanded(
             child: Row(
           children: [
-            SideMenu(),
+            if (MediaQuery.of(context).size.width > 800) SideMenu(),
             Expanded(child: PlaylistScreen(playlist: lofihiphopPlaylist)),
           ],
         )),
-        Container(
-          height: 84.0,
-          color: Colors.blue,
-          width: double.infinity,
-        ),
+        CurrentTrack(),
       ]),
     );
   }

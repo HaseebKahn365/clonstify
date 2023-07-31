@@ -36,21 +36,24 @@ class PlaylistHeader extends StatelessWidget {
                 SizedBox(
                   height: 12.0,
                 ),
-                Text(
-                  playlist.name,
-                  style: Theme.of(context).textTheme.headline2,
-                ),
+                if (MediaQuery.of(context).size.width > 800)
+                  Text(
+                    playlist.name,
+                    style: Theme.of(context).textTheme.headline2,
+                  ),
                 SizedBox(
                   height: 16.0,
                 ),
-                Text(
-                  playlist.description,
-                  style: Theme.of(context).textTheme.subtitle1!.copyWith(color: Colors.white70, fontSize: 14.0),
-                ),
-                Text(
-                  'Created By: ${playlist.creator} • ${playlist.songs.length} songs, ${playlist.duration}',
-                  style: Theme.of(context).textTheme.subtitle1!.copyWith(color: Colors.white70, fontSize: 14.0),
-                ),
+                if (MediaQuery.of(context).size.width > 800)
+                  Text(
+                    playlist.description,
+                    style: Theme.of(context).textTheme.subtitle1!.copyWith(color: Colors.white70, fontSize: 14.0),
+                  ),
+                if (MediaQuery.of(context).size.width > 800)
+                  Text(
+                    'Created By: ${playlist.creator} • ${playlist.songs.length} songs, ${playlist.duration}',
+                    style: Theme.of(context).textTheme.subtitle1!.copyWith(color: Colors.white70, fontSize: 14.0),
+                  ),
               ],
             ))
           ],
