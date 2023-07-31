@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spotify_ui/Models/current_track_model.dart';
+import 'package:provider/provider.dart';
 
 import '../data/data.dart';
 
@@ -9,6 +11,9 @@ class TracksList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DataTable(
+      headingTextStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold),
+      showCheckboxColumn: false,
+      dataRowMinHeight: 40.0,
       columns: [
         DataColumn(label: Text('TITLE', style: Theme.of(context).textTheme.bodyLarge)),
         DataColumn(label: Text('ARTIST', style: Theme.of(context).textTheme.bodyLarge)),
@@ -18,22 +23,29 @@ class TracksList extends StatelessWidget {
         ),
       ],
       rows: tracks.map((e) {
+        final selected = context.watch<CurrentTrackModel>().selected?.id == e.id;
+        final textStyle = TextStyle(
+          color: selected ? Theme.of(context).colorScheme.secondary : Theme.of(context).iconTheme.color,
+          fontWeight: selected ? FontWeight.bold : FontWeight.normal,
+        );
         return DataRow(
           cells: [
             DataCell(
-              Text(e.title, style: TextStyle(color: Theme.of(context).iconTheme.color)),
+              Text(e.title, style: textStyle),
             ),
             DataCell(
-              Text(e.artist, style: TextStyle(color: Theme.of(context).iconTheme.color)),
+              Text(e.artist, style: textStyle),
             ),
             DataCell(
-              Text(e.album, style: TextStyle(color: Theme.of(context).iconTheme.color)),
+              Text(e.album, style: textStyle),
             ),
             DataCell(Text(
               e.duration,
-              style: TextStyle(color: Theme.of(context).iconTheme.color),
+              style: textStyle,
             )),
           ],
+          selected: selected,
+          onSelectChanged: (_) => context.read<CurrentTrackModel>().selectTrack(e),
         );
       }).toList(),
     );
