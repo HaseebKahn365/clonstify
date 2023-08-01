@@ -111,7 +111,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
           ),
         ),
         child: Scrollbar(
-          isAlwaysShown: true,
+          thumbVisibility: true,
           controller: _scrollController,
           child: ListView(
             controller: _scrollController,
